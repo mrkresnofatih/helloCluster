@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hellodep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloapp
+  template:
+    metadata:
+      labels:
+        app: helloapp
+    spec:
+      containers:
+        - name: helloapi
+          image: ghcr.io/mrkresnofatih/ghcr.io/mrkresnofatih/hello-api:v1.0.2
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              cpu: 200m
+              memory: 100Mi
+            requests:
+              cpu: 200m
+              memory: 100Mi
